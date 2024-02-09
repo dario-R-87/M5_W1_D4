@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Card from "../card/Card"
+import BookCard from "../card/BookCard"
 
 const Main = () => {
 
@@ -25,7 +25,12 @@ const Main = () => {
     return(
         <div>
            {books.map((book)=>{
-                return <Card />
+                return <BookCard 
+                    img={book.img}
+                    category={book.category}
+                    price={book.price}
+                    title={book.title}
+                />
            })}
         </div>
    );
