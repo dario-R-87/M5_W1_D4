@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Card from "../card/Card"
 
 const Main = () => {
 
@@ -6,9 +7,10 @@ const Main = () => {
 
     const getData = async () => {
         try {
-            const resp = await fetch("https://epibooks.onrender.com/");
-            const data = resp.json();
-            setBooks(data);
+            const resp = await fetch("https://epibooks.onrender.com/?limit=10");
+            const data = await resp.json();
+            const firstTenItems = data.slice(0, 10);
+            setBooks(firstTenItems);
         } catch (error) {
             console.error(error)
         }
@@ -21,7 +23,11 @@ const Main = () => {
     console.log(books);
 
     return(
-        <div>ciao</div>
+        <div>
+           {books.map((book)=>{
+                return <Card />
+           })}
+        </div>
    );
 }
 
