@@ -11,3 +11,25 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 } */
+
+:root {
+  --bs-nav-link-color: rgba(255, 255, 255, 0.8);
+  --bs-navbar-brand-color: rgba(255, 255, 255, 0.8);
+}
+
+.navbar-brand,
+.nav-link {
+  color: white;
+}
+
+.navbar-brand:focus,
+.navbar-brand:hover,
+.nav-link:focus,
+.nav-link:hover {
+  color: greenyellow !important;
+}
+
+.navbar-brand:active,
+.nav-link:active {
+  color: orange;
+}
