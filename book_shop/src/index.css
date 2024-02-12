@@ -18,7 +18,8 @@ code {
 }
 
 .navbar-brand,
-.nav-link {
+.nav-link
+ {
   color: white;
 }
 
@@ -29,7 +30,11 @@ code {
   color: greenyellow !important;
 }
 
-.navbar-brand:active,
-.nav-link:active {
+
+.navbar-nav .nav-link.active, .navbar-nav .nav-link.show{
   color: orange;
 }
+
+
+.navbar-toggler {
+background-color: white;}
