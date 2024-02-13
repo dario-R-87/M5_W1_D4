@@ -1,7 +1,7 @@
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
-const BookCard = ({ img, category, price, title }) => {
+const SingleBook = ({ img, category, price, title }) => {
   return (
     <Card style={{ width: "18rem" }}>
       <Card.Img variant="top" src={img} />
@@ -15,4 +15,4 @@ const BookCard = ({ img, category, price, title }) => {
   );
 };
 
-export default BookCard;
+export default SingleBook;
