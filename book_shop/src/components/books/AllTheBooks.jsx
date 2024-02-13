@@ -2,18 +2,23 @@ import { useEffect, useState } from "react";
 import SingleBook from "../card/SingleBook";
 import { nanoid } from "nanoid";
 import { Container, Row } from "react-bootstrap";
+import LoadSpinner from "../loading/LoadSpinner";
 
 const AllTheBooks = () => {
   const [books, setBooks] = useState([]);
-
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+  
   const getData = async () => {
     try {
-      const resp = await fetch("https://epibooks.onrender.com/?limit=10");
+      setLoading(true);
+      const resp = await fetch("https://epibooks.onrender.com/");
       const data = await resp.json();
       const firstTenItems = data.slice(0, 10);
       setBooks(firstTenItems);
+      setLoading(false)
     } catch (error) {
-      console.error(error);
+      setError(error.message);
     }
   };
 
@@ -21,11 +26,12 @@ const AllTheBooks = () => {
     getData();
   }, []);
 
-  console.log(books);
   return (
     <Container>
       <Row className="gap-3 justify-content-center my-3">
-        {books.map((book) => {
+        {error && <div>Ops, something went wrong...</div>}
+        {loading && !error && <LoadSpinner />}
+        {!loading && !error && books.map((book) => {
           return (
             <SingleBook
               key={nanoid()}

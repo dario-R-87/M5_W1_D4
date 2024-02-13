@@ -1,9 +1,13 @@
 import AllTheBooks from "../books/AllTheBooks";
+import BooksFiltered from "../books/BooksFiltered";
 
-const Main = () => {
+const Main = ({searchValue}) => {
 
   return (
-    <AllTheBooks />
+    <>
+      {searchValue==="" && <AllTheBooks />}
+      {searchValue!=="" && <BooksFiltered  searchValue={searchValue}/>}
+    </>
   );
 };
 

@@ -6,7 +6,7 @@ const SingleBook = ({ img, category, price, title }) => {
     <Card style={{ width: "18rem" }}>
       <Card.Img variant="top" src={img} />
       <Card.Body>
-        <Card.Title>C{title}</Card.Title>
+        <Card.Title>{title}</Card.Title>
         <Card.Text>{category}</Card.Text>
         <Card.Text>{price}</Card.Text>
         <Button variant="primary">Go somewhere</Button>
