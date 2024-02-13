@@ -4,11 +4,12 @@ import { nanoid } from "nanoid";
 import { Container, Row } from "react-bootstrap";
 import LoadSpinner from "../loading/LoadSpinner";
 
-const AllTheBooks = () => {
+const AllTheBooks = ({ searchValue }) => {
   const [books, setBooks] = useState([]);
+  const [filteredBooks, setFilteredBooks] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-  
+
   const getData = async () => {
     try {
       setLoading(true);
@@ -26,12 +27,25 @@ const AllTheBooks = () => {
     getData();
   }, []);
 
+
+  useEffect(() => {
+    if (searchValue !== "") {
+      const filteredBooks = books.filter((book) => {
+        return book.title.toLowerCase().includes(searchValue.toLowerCase())
+      });
+      setFilteredBooks(filteredBooks);
+    } else 
+      setFilteredBooks([]);
+  },[searchValue, books]);
+
+  const booksByMap = filteredBooks.length > 0 ? filteredBooks : books;
+
   return (
     <Container>
       <Row className="gap-3 justify-content-center my-3">
         {error && <div>Ops, something went wrong...</div>}
         {loading && !error && <LoadSpinner />}
-        {!loading && !error && books.map((book) => {
+        {!loading && !error && booksByMap.map((book) => {
           return (
             <SingleBook
               key={nanoid()}
